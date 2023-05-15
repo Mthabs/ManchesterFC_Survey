@@ -22,6 +22,20 @@ def add_row():
         coach_score = validate_score("Enter coach score (1-10): ")
         players_score = validate_score("Enter players score (1-10): ")
         SHEET.append_row([name, brand_score, coach_score, players_score])
-        return
+        print("Row added successfully.")
+        break
+
+def validate_score(prompt):
+    while True:
+        score = input(prompt).strip()
+        if not score.isdigit():
+            print("Invalid score. Please enter a number.")
+            continue
+        score = int(score)
+        if score < 1 or score > 10:
+            print("Invalid score. Please enter a number between 1 and 10.")
+            continue
+        return score        
+
 test = add_row()
 print(test)
