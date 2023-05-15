@@ -1,6 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
-
+import re
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -10,7 +10,7 @@ SCOPE = [
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('Manchester FC - Survey')
+SHEET = GSPREAD_CLIENT.open('Manchester FC - Survey').sheet1
 
 def add_row():
     while True:
@@ -37,5 +37,18 @@ def validate_score(prompt):
             continue
         return score        
 
-test = add_row()
-print(test)
+def main():
+    while True:
+        print("1. Add a row")
+        print("2. Quit")
+        choice = input("Enter your choice: ").strip()
+        if choice == '1':
+            add_row()
+        elif choice == '2':
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 5.")
+
+if __name__ == '__main__':
+    main()
