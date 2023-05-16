@@ -11,7 +11,7 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Manchester FC - Survey').sheet1
-"""
+
 def add_row():
     while True:
         name = input("Enter name: ").strip()
@@ -35,25 +35,8 @@ def validate_score(prompt):
         if score < 1 or score > 10:
             print("Invalid score. Please enter a number between 1 and 10.")
             continue
-        return score        
+        return score 
 
-def main():
-    while True:
-        print("1. Add a row")
-        print("2. Quit")
-        choice = input("Enter your choice: ").strip()
-        if choice == '1':
-            add_row()
-        elif choice == '2':
-            print("Goodbye!")
-            break
-        else:
-            print("Invalid choice. Please enter a number between 1 and 5.")
-
-if __name__ == '__main__':
-    main()
-
-"""
 def calculate_average():
     data = SHEET.get_all_values()
     new_data = [data[0][1:],]  # exclude name and age columns
@@ -74,7 +57,27 @@ def append_to_sheet2():
     sheet = GSPREAD_CLIENT.open('Manchester FC - Survey').worksheet('Sheet2')
     data = calculate_average()
     last_row = len(sheet.get_all_values()) + 1  # add 1 to account for the header row
-    update_range = f"B{last_row}:E{last_row}"  # Update the range to include three columns
+    update_range = f"A{last_row}:D{last_row}"  # Update the range to include three columns
     sheet.update(update_range, data[1:])  # Update with the data in row format excluding the header row
-    return "Average scores updated successfully to Sheet2!!!"
-append_to_sheet2()
+    return "Average scores updated successfully to Sheet2!!!"       
+
+def main():
+    while True:
+        print("1. Add a row")
+        print("2. append averages it Sheet2")
+        print("3. Quit")
+        choice = input("Enter your choice: ").strip()
+        if choice == '1':
+            add_row()
+        elif choice == '2':
+            append_to_sheet2()
+        elif choice == '3':
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 3.")
+
+if __name__ == '__main__':
+    main()
+
+
