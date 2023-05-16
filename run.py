@@ -11,7 +11,7 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Manchester FC - Survey').sheet1
-
+"""
 def add_row():
     while True:
         name = input("Enter name: ").strip()
@@ -52,3 +52,23 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+"""
+def calculate_average():
+    data = SHEET.get_all_values()
+    new_data = [data[0][1:],]  # exclude name and age columns
+    new_data.extend([row[1:] for row in data[1:]])
+
+    averages = [["Category", "Average"]]
+    for category in ["Brand score", "Coach score", "Players score"]:
+        category_data = new_data[1:]
+        category_scores = [int(row[new_data[0].index(category)]) for row in category_data]
+        category_average = sum(category_scores) / len(category_scores)
+        averages.append([category, str(int(category_average))])
+
+    # Transpose the averages list to get the output in row format
+    row_format = list(map(list, zip(*averages)))
+    return row_format
+
+test = calculate_average()
+print(test)
