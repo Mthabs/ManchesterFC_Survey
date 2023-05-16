@@ -70,5 +70,11 @@ def calculate_average():
     row_format = list(map(list, zip(*averages)))
     return row_format
 
-test = calculate_average()
-print(test)
+def append_to_sheet2():
+    sheet = GSPREAD_CLIENT.open('Manchester FC - Survey').worksheet('Sheet2')
+    data = calculate_average()
+    last_row = len(sheet.get_all_values()) + 1  # add 1 to account for the header row
+    update_range = f"B{last_row}:E{last_row}"  # Update the range to include three columns
+    sheet.update(update_range, data[1:])  # Update with the data in row format excluding the header row
+    return "Average scores updated successfully to Sheet2!!!"
+append_to_sheet2()
