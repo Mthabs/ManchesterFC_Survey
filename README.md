@@ -18,7 +18,8 @@ The survey responses provided by the users are collected and stored for further 
 
 Error Handling
 
-The application incorporates error handling mechanisms to ensure that users provide valid and complete responses. It validates user input and provides appropriate error messages if invalid data is entered, allowing users to correct their responses and ensuring the accuracy of the collected data.
+The application incorporates error handling mechanisms to ensure that users provide valid and complete responses. It validates user input and provides appropriate error messages if invalid data is entered, allowing users to correct their responses and ensuring the accuracy of the collected data
+.
 
 Setup Instructions
 
@@ -48,13 +49,6 @@ The ManchesterFC_Survey project utilizes the following dependencies:
 
 • pip (Python package installer)
 
-• pandas - A powerful data manipulation library used for managing survey data.
-
-• openpyxl - A library for reading and writing Excel files, used for storing survey data in spreadsheets.
-
-• sqlite3 - A built-in Python library for working with SQLite databases, used for storing survey data.
-
-Ensure that you have Python and pip installed on your system before proceeding with the setup instructions.
 
 Running the Application
 
@@ -79,7 +73,6 @@ The ManchesterFC_Survey application has undergone thorough testing to ensure its
 • Tested the application on various screen sizes and resolutions to ensure responsiveness and proper display on different devices.
 
 The ultimate goal of the survey is to use the gathered feedback to drive continuous improvement within Manchester FC. It allows the club to identify areas of strength and areas that require attention, enabling the club to enhance the overall fan experience, develop effective coaching strategies, and ensure the team's performance aligns with the supporters' expectations.
-
 Features
 
 Survey Questions
@@ -140,17 +133,34 @@ python main.py
 
 Follow the on-screen instructions and provide your responses to the survey questions. The application will handle the data storage and error handling automatically.
 
-Testing
+Testing			
+I have manually tested this project by doing the following:			
+• Passed the code through a PEP8 linter and confirmed there are no problems			
+"• Given invalid inputs: strings when numbers are expected, out of bounds inputs, same input twice"			
+• Tested in my local terminal and the Code Institute Heroku terminal			
+Bugs			
+Solved Bugs			
+"• When I wrote the project, I was getting index errors because I had forgotten that the lists are zero indexed. I fixed"			
+this by adding  size  -  1 where necessary			
+• My validate_ coordinates function was returning false positives because I hadn't structured the if statement properly			
+Remaining Bugs			
+• No bugs remaining		
 
-The ManchesterFC_Survey application has undergone thorough testing to ensure its functionality and reliability. The following tests were performed:
+Validator Testing		
 
-• Tested different scenarios with valid and invalid inputs to verify the application's response and error handling mechanisms.
+• PEP8			
+o   Two errors were returned from PEP8online.com			
+![alt text](https://github.com/pythoncheker.png?raw=true)
 
-• Checked the data storage functionality by validating that survey responses were correctly recorded in the designated storage (e.g., spreadsheet or database).
+Deployment			
+This project was deployed using Code lnstitute's mock terminal for Heroku.			
+• Steps for deployment:			
+o  Fork or clone this repository			
+o  Create a new Heroku app			
+o Set the buildbacks to Pyt hon  and NodeJS  in that order			
+o  Link the Heroku app to the repository			
+o  Click on Deploy			
 
-• Conducted cross-browser testing to ensure compatibility across popular web browsers.
-
-• Tested the application on various screen sizes and resolutions to ensure responsiveness and proper display on different devices.
 
 
 
