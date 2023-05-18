@@ -1,17 +1,20 @@
+
+# Used to interact with google sheet and to authenticate thr google sheet API access.
 import gspread
 from google.oauth2.service_account import Credentials
-import re
+# A list of Google API scopes required to access and modify spreadsheets
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
 ]
-
+# Loads the credentials from the "creds.json" file, which is the service account key file obtained from the Google Cloud Console and also Creates a new instance of credentials with the specified scope.
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Manchester FC - Survey').sheet1
 
+# Prompts the user to enter a name and three scores (brand, coach, players) between 1 and 10
 def add_row():
     while True:
         name = input("Enter name: ").strip()
@@ -24,7 +27,7 @@ def add_row():
         SHEET.append_row([name, brand_score, coach_score, players_score])
         print("Row added successfully.")
         break
-
+# Prompts the user with the given message to enter a score and validates it.
 def validate_score(prompt):
     while True:
         score = input(prompt).strip()
@@ -37,6 +40,7 @@ def validate_score(prompt):
             continue
         return score 
 
+# Retrieves all data from the "Manchester FC - Survey" sheet and calculates the average scores for each category.
 def calculate_average():
     data = SHEET.get_all_values()
     new_data = [data[0][1:],]  # exclude name and age columns
@@ -53,6 +57,7 @@ def calculate_average():
     row_format = list(map(list, zip(*averages)))
     return row_format
 
+# Appends the calculated average scores to the "Sheet2" sheet in the "surveyRs" spreadsheet.
 def append_to_sheet2():
     sheet = GSPREAD_CLIENT.open('Manchester FC - Survey').worksheet('Sheet2')
     data = calculate_average()
@@ -61,6 +66,7 @@ def append_to_sheet2():
     sheet.update(update_range, data[1:])  # Update with the data in row format excluding the header row
     return "Average scores updated successfully to Sheet2!!!"       
 
+# Displays a menu with options to add a row, append averages to Sheet2, or quit.
 def main():
     while True:
         print("1. Add a row")
@@ -68,9 +74,16 @@ def main():
         print("3. Quit")
         choice = input("Enter your choice: ").strip()
         if choice == '1':
-            add_row()
+            try:
+                add_row()
+            except Exception as e:
+                print("An error occurred:", str(e))
         elif choice == '2':
-            append_to_sheet2()
+            try:
+                append_to_sheet2()
+                print("Average scores updated successfully in Sheet2!!!")
+            except Exception as e:
+                print("An error occurred:", str(e))
         elif choice == '3':
             print("Goodbye!")
             break
