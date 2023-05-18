@@ -17,6 +17,7 @@ SHEET = GSPREAD_CLIENT.open('Manchester FC - Survey').sheet1
 # Prompts the user to enter a name and three scores (brand, coach, players) between 1 and 10
 def add_row():
     while True:
+        #code for add row
         name = input("Enter name: ").strip()
         if not all(c.isalpha() or c.isspace() for c in name):
             print("Invalid name. Please enter letters only.")
@@ -27,9 +28,11 @@ def add_row():
         SHEET.append_row([name, brand_score, coach_score, players_score])
         print("Row added successfully.")
         break
+    
 # Prompts the user with the given message to enter a score and validates it.
 def validate_score(prompt):
     while True:
+        #code for validating score
         score = input(prompt).strip()
         if not score.isdigit():
             print("Invalid score. Please enter a number.")
@@ -42,6 +45,7 @@ def validate_score(prompt):
 
 # Retrieves all data from the "Manchester FC - Survey" sheet and calculates the average scores for each category.
 def calculate_average():
+    #code for calculating averages
     data = SHEET.get_all_values()
     new_data = [data[0][1:],]  # exclude name and age columns
     new_data.extend([row[1:] for row in data[1:]])
@@ -59,6 +63,7 @@ def calculate_average():
 
 # Appends the calculated average scores to the "Sheet2" sheet in the "surveyRs" spreadsheet.
 def append_to_sheet2():
+    #code for appending to sheet2
     sheet = GSPREAD_CLIENT.open('Manchester FC - Survey').worksheet('Sheet2')
     data = calculate_average()
     last_row = len(sheet.get_all_values()) + 1  # add 1 to account for the header row
@@ -69,6 +74,7 @@ def append_to_sheet2():
 # Displays a menu with options to add a row, append averages to Sheet2, or quit.
 def main():
     while True:
+        #code for main manu
         print("1. Add a row")
         print("2. append averages it Sheet2")
         print("3. Quit")

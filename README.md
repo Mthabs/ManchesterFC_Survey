@@ -1,14 +1,12 @@
 ManchesterFC_Survey
 
-Welcome,
+Manchester FC Survey is conducted with the goal of gathering feedback and insights from thier valued supporters. The club want to understand how supporters perceive the brand, coach, and players, as this information is essential for shaping the future direction of Manchester FC.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
+The survey is conducted through a command-line application, which provides a user-friendly interface for the user to manage the dataset. Users are prompted to provide ratings on a scale of 1 to 10 for each category—brand, coach, and players. The application validates the input to ensure it falls within the appropriate range and format.
 
-## Reminders
+By collecting these ratings, the survey aims to achieve several objectives. Firstly, it seeks to assess the overall perception of Manchester FC's brand and how well it resonates with the supporters. Secondly, it aims to evaluate the coaching strategies implemented by the dedicated coaching staff and understand their impact on the team. Lastly, the survey aims to gain insights into how supporters perceive the performance of the players on the field.
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+The ultimate goal of the survey is to use the gathered feedback to drive continuous improvement within Manchester FC. It allows the club to identify areas of strength and areas that require attention, enabling the club to enhance the overall fan experience, develop effective coaching strategies, and ensure the team's performance aligns with the supporters' expectations.
 
 ## Creating the Heroku app
 
