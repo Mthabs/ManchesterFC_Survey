@@ -14,8 +14,12 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Manchester FC - Survey').sheet1
 
-# Prompts the user to enter a name and three scores (brand, coach, players) between 1 and 10
+
+
 def add_row():
+    """
+     Prompts the user to enter a name and three scores (brand, coach, players) between 1 and 10
+    """
     while True:
         #code for add row
         name = input("Enter name: ").strip()
@@ -29,8 +33,12 @@ def add_row():
         print("Row added successfully.")
         break
     
-# Prompts the user with the given message to enter a score and validates it.
+
+
 def validate_score(prompt):
+    """
+     Prompts the user with the given message to enter a score and validates it.
+    """
     while True:
         #code for validating score
         score = input(prompt).strip()
@@ -43,9 +51,13 @@ def validate_score(prompt):
             continue
         return score 
 
-# Retrieves all data from the "Manchester FC - Survey" sheet and calculates the average scores for each category.
+
+
 def calculate_average():
-    #code for calculating averages
+    """
+     Retrieves all data from the "Manchester FC - Survey" sheet and calculates the average scores for each category.
+     code for calculating averages
+    """
     data = SHEET.get_all_values()
     new_data = [data[0][1:],]  # exclude name and age columns
     new_data.extend([row[1:] for row in data[1:]])
@@ -61,9 +73,13 @@ def calculate_average():
     row_format = list(map(list, zip(*averages)))
     return row_format
 
-# Appends the calculated average scores to the "Sheet2" sheet in the "surveyRs" spreadsheet.
+
+
 def append_to_sheet2():
-    #code for appending to sheet2
+    """
+     Appends the calculated average scores to the "Sheet2" sheet in the "surveyRs" spreadsheet.
+    code for appending to sheet2
+    """
     sheet = GSPREAD_CLIENT.open('Manchester FC - Survey').worksheet('Sheet2')
     data = calculate_average()
     last_row = len(sheet.get_all_values()) + 1  # add 1 to account for the header row
@@ -71,8 +87,13 @@ def append_to_sheet2():
     sheet.update(update_range, data[1:])  # Update with the data in row format excluding the header row
     return "Average scores updated successfully to Sheet2!!!"       
 
-# Displays a menu with options to add a row, append averages to Sheet2, or quit.
+
+
 def main():
+    """
+     Displays a menu with options to add a row, append averages to Sheet2, or quit.
+
+    """
     while True:
         #code for main manu
         print("1. Add a row")
@@ -98,5 +119,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
