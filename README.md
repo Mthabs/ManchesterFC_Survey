@@ -82,12 +82,17 @@ The application presents a series of survey questions to the user, covering vari
 Data Collection
 
 The survey responses provided by the users are collected and stored for further analysis. The application utilizes a spreadsheet or database to record the survey data, ensuring that it is organized and easily accessible for future use. This enables the club to review and analyze the data to gain valuable insights into fan opinions.
+
 ![alt text](https://github.com/Mthabs/ManchesterFC_Survey/blob/main/submitscore.png?raw=true)
+
 
 Error Handling
 
 The application incorporates error handling mechanisms to ensure that users provide valid and complete responses. It validates user input and provides appropriate error messages if invalid data is entered, allowing users to correct their responses and ensuring the accuracy of the collected data.
+
+
 ![alt text](https://github.com/Mthabs/ManchesterFC_Survey/blob/main/datavaidation.png?raw=true)
+
 
 Setup Instructions
 
