@@ -150,7 +150,7 @@ Validator Testing
 
 • PEP8			
 o   Two errors were returned from PEP8online.com			
-![alt text](https://github.com/Mthabs/ManchesterFC_Survey/pythoncheker.png?raw=true)
+![alt text](https://github.com/Mthabs/ManchesterFC_Survey/blob/main/pythoncheker.png?raw=true)
 
 Deployment			
 This project was deployed using Code lnstitute's mock terminal for Heroku.			
