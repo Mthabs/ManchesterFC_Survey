@@ -1,14 +1,20 @@
-
-# Used to interact with google sheet and to authenticate thr google sheet API access.
+"""
+ Used to interact with google sheet and to authenticate thr google sheet API access.
+""" 
 import gspread
 from google.oauth2.service_account import Credentials
-# A list of Google API scopes required to access and modify spreadsheets
+
+"""
+ A list of Google API scopes required to access and modify spreadsheets
+"""
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
 ]
-# Loads the credentials from the "creds.json" file, which is the service account key file obtained from the Google Cloud Console and also Creates a new instance of credentials with the specified scope.
+"""
+ Loads the credentials from the "creds.json" file, which is the service account key file obtained from the Google Cloud Console and also Creates a new instance of credentials with the specified scope.
+"""
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
@@ -92,7 +98,6 @@ def append_to_sheet2():
 def main():
     """
      Displays a menu with options to add a row, append averages to Sheet2, or quit.
-
     """
     while True:
         #code for main manu
